@@ -9,28 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var mock_users_1 = require('./mock-users');
-var UserService = (function () {
-    function UserService() {
+var user_service_1 = require('./user.service');
+var DashboardComponent = (function () {
+    function DashboardComponent(userService) {
+        this.userService = userService;
+        this.users = [];
     }
-    UserService.prototype.getUser = function (id) {
-        return this.getUsers()
-            .then(function (users) { return users.find(function (user) { return user.id === id; }); });
-    };
-    UserService.prototype.getUsers = function () {
-        return Promise.resolve(mock_users_1.USERS);
-    };
-    UserService.prototype.getUsersSlowly = function () {
+    DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        return new Promise(function (resolve) {
-            setTimeout(function () { return resolve(_this.getUsers()); }, 2000);
-        });
+        this.userService.getUsers()
+            .then(function (users) { return _this.users = users.slice(1, 5); });
     };
-    UserService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], UserService);
-    return UserService;
+    DashboardComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-dashboard',
+            templateUrl: './dashboard.component.html'
+        }), 
+        __metadata('design:paramtypes', [user_service_1.UserService])
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
-exports.UserService = UserService;
-//# sourceMappingURL=user.service.js.map
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map
