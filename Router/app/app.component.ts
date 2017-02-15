@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { User } from './user';
+import { UserDetailComponent } from './user-details.component';
 @Component({
   selector: 'my-app',
   template:`
@@ -11,14 +12,8 @@ import { Component } from '@angular/core';
     </li>
   </ul>
 
-  <div *ngIf="selectedUser">
-    <h2 >{{selectedUser.name}} details!</h2>
-    <div><label>id: </label>{{selectedUser.id}}</div>
-    <div >
-      <label>name: </label>
-      <input  [(ngModel)]="selectedUser.name" placeholder="name">
-    </div>
-  </div>  `,
+  <my-user-detail [user]="selectedUser"></my-user-detail>
+   `,
   styles: [`
   .selected {
     background-color: #CFD8DC !important;
@@ -71,10 +66,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  {
   title='User Manage';
-  user: User = {
-    id: 1,
-    name: 'Swapnil'
-  };
+
   users=USERS;
   selectedUser: User;
 
@@ -82,10 +74,7 @@ export class AppComponent  {
     this.selectedUser = user;
   }
 }
-export class User{
-  id:number;
-  name:string;
-}
+
 
 export const USERS: User[] = [
   { id: 11, name: 'Mr. Nice' },
