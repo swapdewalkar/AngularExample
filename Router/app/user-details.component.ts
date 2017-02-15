@@ -9,7 +9,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   moduleId: module.id,
   selector: 'my-user-detail',
-  templateUrl: './users-details.component.html',
+  templateUrl: './user-details.component.html',
 })
 export class UserDetailComponent implements OnInit  {
   @Input() user: User;
@@ -24,6 +24,7 @@ export class UserDetailComponent implements OnInit  {
       .switchMap((params: Params) => this.userService.getUser(+params['id']))
       .subscribe(user => this.user = user);
   }
+
 
   goBack(): void {
     this.location.back();

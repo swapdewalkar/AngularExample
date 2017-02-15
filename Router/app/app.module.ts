@@ -9,31 +9,13 @@ import { UsersComponent } from './users.component';
 import { UserService } from './user.service';
 
 import { RouterModule }   from '@angular/router';
-
+import { AppRoutingModule } from './app-routing.module'
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: 'users',
-        component: UsersComponent
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'detail/:id',
-        component: UserDetailComponent
-      },
-      {
-        path: '',
-        redirectTo:'/dashboard',
-        pathMatch:'full'
-      },
-    ])
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
