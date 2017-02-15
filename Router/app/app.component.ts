@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { User } from './user';
 import { UserDetailComponent } from './user-details.component';
+import { UserService } from './user.service';
+import { OnInit } from '@angular/core';
+
 @Component({
   selector: 'my-app',
   template:`
@@ -62,29 +65,26 @@ import { UserDetailComponent } from './user-details.component';
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-`]
+`],
+  providers: [UserService]
 })
-export class AppComponent  {
+export class AppComponent implements OnInit {
+  constructor(private userService: UserService) { }
+
   title='User Manage';
 
-  users=USERS;
+  getUsers(): void {
+    this.userService.getUsers().then(users => this.users = users);
+  }
+
+  users:User[];
   selectedUser: User;
 
   onSelect(user: User): void {
     this.selectedUser = user;
   }
+
+  ngOnInit(): void {
+    this.getUsers();
+  }
 }
-
-
-export const USERS: User[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];

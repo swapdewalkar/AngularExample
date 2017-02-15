@@ -8,22 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var user_1 = require("./user");
+var core_1 = require('@angular/core');
+var user_1 = require('./user');
 var UserDetailComponent = (function () {
     function UserDetailComponent() {
     }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', user_1.User)
+    ], UserDetailComponent.prototype, "user", void 0);
+    UserDetailComponent = __decorate([
+        core_1.Component({
+            selector: 'my-user-detail',
+            template: "\n\n    <div *ngIf=\"user\">\n      <h2>{{user.name}} details!</h2>\n      <div><label>id: </label>{{user.id}}</div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"user.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n\n  "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], UserDetailComponent);
     return UserDetailComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", user_1.User)
-], UserDetailComponent.prototype, "user", void 0);
-UserDetailComponent = __decorate([
-    core_1.Component({
-        selector: 'my-user-detail',
-        template: "\n\n    <div *ngIf=\"user\">\n      <h2>{{user.name}} details!</h2>\n      <div><label>id: </label>{{user.id}}</div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"user.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n\n  "
-    })
-], UserDetailComponent);
 exports.UserDetailComponent = UserDetailComponent;
 //# sourceMappingURL=user-details.component.js.map
